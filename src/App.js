@@ -27,16 +27,20 @@ function App() {
     }
   };
 
-  useEffect(async () => {
-    try {
-      var res = await axios.get(
-        `https://json-todo-api-server.herokuapp.com/todos?_page=${page}&_limit=1`
-      );
-      console.log(res);
-      setTodos(res.data);
-    } catch (error) {
-      console.log(error);
-    }
+  useEffect(() => {
+    var fetchdata = async () => {
+      try {
+        var res = await axios.get(
+          `https://json-todo-api-server.herokuapp.com/todos?_page=${page}&_limit=1`
+        );
+        console.log(res);
+        setTodos(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchdata();
   }, [page]);
 
   return (
